@@ -19,7 +19,7 @@ You have to choose 4 favorite dishes. Based on your choice, the code will find t
 - [HTML]
 - [CSS]
 - [JAVASCRIPT]
-- [WEBPACK]
+- [VUE]
 
 <!-- LICENSE -->
 
