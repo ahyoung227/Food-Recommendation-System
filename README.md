@@ -12,7 +12,7 @@ You have to choose 4 favorite dishes. Based on your choice, the code will find t
 <p>- I assume that I already have 20 users' favorite food data('datapools'). By clicking the start button, the 'datapools' will be randomly created. When you choose 4 favorite dishes, the code will also push your '4 favorited dishes' data into the datapool.</p>
 
 <p>Bon appetite!</p>
-<img src="recommendation-system.gif" width="700px" height="400px">
+<img src="recommendation-system.gif" width="800px" height="500px">
 
 ### Built With
 
