@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Food Recommendation System(Inspired by Neflix)</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github-gist.min.css'>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div id="app" class="container">
+    <div class="row">
+      <div class="col">
+
+
+        <!--Root component-->
+
+        <h1>Cookeat: What shall I cook/eat today?</h1>
+        <br>
+        <h2>Are you struggling to choose what to cook/eat for lunch/dinner? <br> Are you sick and tired of eating same
+          thing everyday?</h2>
+
+        <p>We will help you to choose! cookeat will show some options from people who have similar choices of yours.</p>
+        <br>
+        <h4>Click the Start/Restart button!
+          <button @click="initData">Start</button>
+
+        </h4>
+        <br>
+        <h4>Choose 4 dishes you like the most.</h4>
+        <br>
+
+
+        <div class="row">
+          <recommen v-for="choicepool in choicepools" :food="choicepool" @update-data="addFood"> </recommen>
+        </div>
+        <p v-for="item in items">{{ item }}</p>
+        <h3>People who like {{ userChoice }} also like</h3>
+        <button @click="recomData">Show recommendation</button>
+        <br>
+
+
+        <div class="row">
+          <resultshow v-for="recommendation in recommendations" :showrecommen="recommendation">
+          </resultshow>
+        </div>
+        <br>
+
+
+        <!--End of Vue application-->
+      </div>
+    </div>
+    <br>
+    <h2> Bon appetit!</h2>
+
+    <div class="row">
+      <div class="column">
+        <footer>
+          <p>Made by AhyoungKim</p>
+        </footer>
+      </div>
+    </div>
+
+  </div>
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+  <script src="./script.js"></script>
+
+</body>
+
+</html>
