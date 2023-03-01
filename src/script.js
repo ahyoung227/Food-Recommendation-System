@@ -1,9 +1,9 @@
-/* I cook every day. If you start to cook regularly, you will be realized that choosing a menu is hard as much as cooking. To avoid this pain, I came up with the simple food recommendation system based on data collected from users.  
+/* I cook every day. If you start to cook regularly, you will be realized that choosing a menu is hard as much as cooking. To avoid this pain, I came up with the simple food recommendation system based on data collected from users.
 
 Here are some notes about how it works.
-- You have to choose 4 favorite dishes. Based on your choice, the code will find the other user who has the most similar food preference. 
+- You have to choose 4 favorite dishes. Based on your choice, the code will find the other user who has the most similar food preference.
 - Then, it will recommend new/favorite dishes chosen by a user who has a similar preference with yours.
-- I assume that I already have 20 users' favorite food data('datapools'). By clicking the start button, the 'datapools' will be randomly created. (JS line 165) When you choose 4 favorite dishes, the code will also push your '4 favorited dishes' data into the datapool.
+- I assume that I already have 20 users' favorite food data('datapools'). By clicking the start button, the 'datapools' will be randomly created. (JS line 165) When you choose 4 favorite dishes, the code will also push your '4 favorite dishes' data into the datapool.
 
 
 Bon appetite!*/
@@ -11,12 +11,12 @@ Bon appetite!*/
 
 Vue.component('recommen', {
   props:["food"],
-  methods: {    
+  methods: {
     update() {
     this.food.check =!this.food.check;
     this.$emit('update-data', this.food);}
   },
-    
+
   template:`
       <div class="col-sm-2">
         <div class="card" :class={check:food.check} @click="update">
@@ -31,7 +31,7 @@ Vue.component('recommen', {
 
 Vue.component('resultshow', {
   props:["showrecommen"],
-    
+
   template:
   `
   <div class="col-sm-2">
@@ -48,11 +48,11 @@ Vue.component('resultshow', {
 
 var app = new Vue({
   el: "#app",
-  data: { 
+  data: {
     choicepools: [ {id: 0,
                     dish: "Shakshuk",
                     image: "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2018/12/Shakshuka-19-500x500.jpg",
-                    check: false}, 
+                    check: false},
                   {id: 1,
                     dish: "Meatball",
                     image: "https://www.cookingclassy.com/wp-content/uploads/2019/09/meatballs-21.jpg",
@@ -60,7 +60,7 @@ var app = new Vue({
                   {id: 2,
                    dish: "Pizza",
                    image: "https://joyfoodsunshine.com/wp-content/uploads/2016/09/easy-pizza-casserole-recipe-4-500x500.jpg",
-                   check: false}, 
+                   check: false},
                   {id: 3,
                    dish: "Pasta",
                    image: "https://www.acouplecooks.com/wp-content/uploads/2019/03/Mushroom-Pasta-007.jpg",
@@ -84,7 +84,7 @@ var app = new Vue({
     foodpools: [ {id: 0,
                     dish: "Shakshuk",
                     image: "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2018/12/Shakshuka-19-500x500.jpg",
-                   check: false}, 
+                   check: false},
                   {id: 1,
                     dish: "Meatball",
                     image: "https://www.cookingclassy.com/wp-content/uploads/2019/09/meatballs-21.jpg",
@@ -92,7 +92,7 @@ var app = new Vue({
                   {id: 2,
                    dish: "Pizza",
                    image: "https://joyfoodsunshine.com/wp-content/uploads/2016/09/easy-pizza-casserole-recipe-4-500x500.jpg",
-                   check: false}, 
+                   check: false},
                   {id: 3,
                    dish: "Pasta",
                    image: "https://www.acouplecooks.com/wp-content/uploads/2019/03/Mushroom-Pasta-007.jpg",
@@ -178,34 +178,34 @@ var app = new Vue({
       this.userFood = [ ...new Set(this.userFood) ];
       this.userChoice.push(choice.dish);
       this.userChoice = [ ... new Set(this.userChoice)];
-      console.log(this.userChoice[0]);
       },
-       
+
     recomData() {
-//Find an object in the array which has the most same values of user's choice      
-     var commonFoodLengths = [];
-     for (var i=0; i< this.datapools.length; i++ ) { 
-       var commonFood = this.userFood.filter(object => this.datapools[i].some(v => v.id === object.id ));
-     commonFoodLengths.push(commonFood.length)
+//Find an object in the array which has the most same values of user's choice
+     let commonFoodLengths = [];
+
+     for (let i=0; i< this.datapools.length; i++ ) {
+       let commonFood = this.userFood.filter(object => this.datapools[i].some(v => v.id === object.id ));
+       commonFoodLengths.push(commonFood.length)
      };
-     var tmpIndex = commonFoodLengths.indexOf(Math.max.apply(null, commonFoodLengths));
+     let tmpIndex = commonFoodLengths.indexOf(Math.max.apply(null, commonFoodLengths));
 
 
      this.recommendations = this.datapools[tmpIndex].filter(object => !this.userFood.find(v => v.id === object.id ));
      this.recommendations = this.recommendations.filter(object => !this.choicepools.find(v => v.id === object.id ));
-      
-// Save food data chosen by user to the datapools                                           
+
+// Save food data chosen by user to the datapools
      this.datapools.push(this.userFood);
 
     },
- 
-    initData() { 
+
+    initData() {
 //make random sets of user datas
-     this.datapools = [];      
+     this.datapools = [];
      var numPerson = 40;
      var numFood = 8;
      for (var i= 0; i < numPerson; i++ ) {
-       var favFood = []; 
+       var favFood = [];
        while (favFood.length !== numFood){
          favFood.push(this.foodpools[Math.floor(Math.random()*this.foodpools.length)]);
          favFood = [ ...new Set(favFood)]
@@ -215,12 +215,12 @@ var app = new Vue({
 
      this.recommendations = [];
      this.userFood = [];
-     this.userChoice = [];  
+     this.userChoice = [];
       for (var i=0; i< this.choicepools.length; i++) {
      this.choicepools[i].check = false;
       }
-     
+
     }
   }
 });
- 
+

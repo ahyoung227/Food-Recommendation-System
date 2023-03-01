@@ -1,5 +1,5 @@
 html, body {
-  font-family: ;
+  font-family: Times;
 }
 
 h1, h2, h4, p {
@@ -7,7 +7,7 @@ h1, h2, h4, p {
 }
 
 .card {
-  display: in-line;
+  display: inline;
 }
 
 .check {
