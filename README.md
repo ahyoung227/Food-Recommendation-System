@@ -1,6 +1,7 @@
 # Food Recommendation System
 
 This project was built for MSTU 5013 Theory and Programming of Interactive Media in 2020.
+The file structure was designed to meet the project's requirements.
 
 ## Background
 
@@ -13,7 +14,7 @@ Please select four of your favorite dishes from the list. Based on your choices,
 ## Recommendation system
 Upon entering their favorite food, the system will identify a user with similar preferences by analyzing the overlap in food choices.
 ```
-    //find a user index that has a maximum overlapping food choices with the user
+    //find a previous user index that has a maximum overlapping food choices with the current user
     var commonFoodLengths = [];
     for (var i=0; i< this.datapools.length; i++ ) {
     var commonFood = this.userFood.filter(object => this.datapools[i].some(v => v.id === object.id ));
